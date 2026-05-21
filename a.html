@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Westmire Wired - Tech Store</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #f4f4f4; color: #333; }
+    header { background: #000; color: #fff; padding: 20px; text-align: center; border-bottom: 3px solid #ff6600; }
+    nav { background: #222; padding: 12px; text-align: center; sticky: top; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { color: #ff6600; }
+    
+    .hero { padding: 60px 20px; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero-bg.jpg'); background-size: cover; color: white; }
+    .hero img { width: 280px; margin-top: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    
+    .container { padding: 40px 20px; max-width: 1200px; margin: auto; }
+    .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    
+    .card {
+      background: white; padding: 20px; border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 280px; text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-10px); }
+    .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+    
+    footer { background: #000; color: white; text-align: center; padding: 25px; margin-top: 40px; }
+    button {
+      padding: 12px 20px; background: #ff6600; border: none; color: white;
+      cursor: pointer; border-radius: 25px; font-weight: bold; width: 100%;
+    }
+    button:hover { background: #e65c00; }
+
+    #cart {
+      position: fixed; right: 0; top: 0; width: 280px; height: 100%;
+      background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+      padding: 20px; overflow-y: auto; display: none; /* Sembunyikan default */
+    }
+    .show-cart #cart { display: block; }
+  </style>
+</head>
+<body class="show-cart">
+
+<header>
+  <h1>Westmire Wired</h1>
+  <p>High Class, High Quality Tech at Affordable Prices</p>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#produk">Produk</a>
+  <a href="#kontak">Lokasi</a>
+</nav>
+
+<section class="hero">
+  <h2>The Westmire A56 Headset</h2>
+  <span><p>Teknologi terbaru dengan kualitas suara premium</span></p>
+  <img src="headset-a56.jpg" alt="Westmire A56 Headset">
+  <br><br>
+  <button style="width: auto;" onclick="addToCart('Westmire A56 Headset', 750000)">Beli Sekarang</button>
+</section>
+
+<div class="container" id="produk">
+  <h2 style="text-align:center; margin-bottom: 30px;">Shop by Category</h2>
+  <div class="grid">
+    
+    <div class="card">
+      <img src="phone-charging.jpg" alt="Phones & Accessories">
+      <h3>Phones & Accessories</h3>
+      <span><p>High class phones at affordable prices</span></p>
+      <button onclick="addToCart('Phone Acc', 150000)">Lihat Produk</button>
+    </div>
+
+    <div class="card">
+      <img src="laptop-setup.jpg" alt="Computer Equipment">
+      <h3>Computer Equipment</h3>
+      <span><p>All your desktop or laptop needs</span></p>
+      <button onclick="addToCart('Laptop Gear', 250000)">Lihat Produk</button>
+    </div>
+
+    <div class="card">
+      <img src="phone-back.jpg" alt="Miscellaneous Items">
+      <h3>Miscellaneous Items</h3>
+      <span><p>More stuff to meet your techie needs</span></p>
+      <button onclick="addToCart('Misc Tech', 100000)">Lihat Produk</button>
+    </div>
+
+  </div>
+</div>
+
+<div id="cart">
+  <h3>🛒 Keranjang Belanja</h3>
+  <hr>
+  <div id="cart-items"></div>
+  <hr>
+  <h4>Total: Rp <span id="total">0</span></h4>
+  <button onclick="alert('Lanjut ke Pembayaran?')">Checkout</button>
+</div>
+
+<div class="container" id="kontak" style="background: #eee; border-radius: 15px;">
+  <h2 style="text-align:center;">Our Locations</h2>
+  <span><p style="text-align:center; font-size: 1.2em;"><strong>SMKN 6 Tangerang Selatan</strong></span></p>
+  <p style="text-align:center; color: #666;">Hubungi kami melalui Instagram, Facebook, atau Twitter.</p>
+</div>
+
+<footer>
+  <p>&copy; <span>2026 Westmire Wired - Solusi Pakar Teknologi Anda</span></p>
+</footer>
+
+<script>
+  let total = 0;
+  function addToCart(nama, harga) {
+    const cartItems = document.getElementById('cart-items');
+    const item = document.createElement('div');
+    item.style.padding = "10px 0";
+    item.style.borderBottom = "1px solid #eee";
+    item.innerText = nama + ' - Rp ' + harga.toLocaleString();
+    cartItems.appendChild(item);
+    total += harga;
+    document.getElementById('total').innerText = total.toLocaleString();
+  }
+</script>
+
+</body>
+</html>
